@@ -1,0 +1,85 @@
+<% layout("/layouts/boilerplate") %>
+    <form action="/listing" method="post" class="needs-validation" novalidate enctype="multipart/form-data"> 
+        <div class="row">
+            <div class="col-md-8 offset-2">
+        <div class="mb-2">
+            <label for="titel" class="form-label">Title</label>
+            <input type="text" name="listing[title]" class="form-control" required>
+            <div class="invalid-feedback">Enter A Valid Title Please.</div>
+        </div>
+        <br>
+        <div class="mb-2">
+            <label for="description" class="form-label">Description</label>
+            <input type="text" name="listing[description]" class="form-control" required>
+            <div class="invalid-feedback">Enter A Valid Description Please.</div>
+        </div>
+
+        <div class="mb-2">
+            <label for="image">Image</label>
+            <input type="file" name="listing[image]" class="form-control" required>
+            <div class="invalid-feedback">Enter A Valid URL Please.</div>
+        </div>
+
+        <br>
+        <div class="row">
+            <div class="mb-2 col-md-4">
+                <label for="price">Price</label>
+                <input type="text" name="listing[price]" class="form-control" required>
+                <div class="invalid-feedback">Enter A Valid Price Please.</div>
+            </div>
+            <br>
+            <div class="mb-2 col-md-8">
+                <label for="country">Country</label>
+                <input type="text" name="listing[country]" class="form-control" required>
+                <div class="invalid-feedback">Enter A Valid Country Please.</div>
+            </div>
+        </div>
+        <br>
+        <div class="mb-2">
+            <label for="location">Location</label>
+            <div id="map">
+                <script>
+                    var map = L.map('map').setView([51.505, -0.09], 13);
+                
+                    // Load OpenStreetMap tiles
+                    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                        maxZoom: 19,
+                        attribution: '&copy; OpenStreetMap contributors'
+                    }).addTo(map);
+                
+                    // Add the geocoder control
+                    const geocoder = L.Control.geocoder({
+                        defaultMarkGeocode: true
+                    }).addTo(map);
+                
+                    // Variable to store selected coordinates
+                    let selectedCoords = {};
+                
+                    geocoder.on('markgeocode', function(e) {
+                        const { center } = e.geocode;
+                
+                        // Save coordinates in hidden input fields
+                        selectedCoords.lat = center.lat;
+                        selectedCoords.lng = center.lng;
+                
+                        document.getElementById("latitude").value = center.lat;
+                        document.getElementById("longitude").value = center.lng;
+                
+                        L.marker(center).addTo(map); 
+                        map.setView(center, 14);
+                    });
+                </script>
+                <input type="hidden" id="latitude" name="listing[latitude]" />
+                <input type="hidden" id="longitude" name="listing[longitude]" />
+                
+             </div>
+            <div class="invalid-feedback">Enter A Valid Location Please.</div>
+        </div>
+        <br> 
+        <button class="btn btn-dark add-btn">Submit</button>
+        </div>
+    </div>
+    </form> <br> <br>
+
+    
+

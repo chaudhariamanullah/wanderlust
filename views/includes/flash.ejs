@@ -1,0 +1,24 @@
+
+<% if ( success && success.length) { %>
+<div class="alert alert-success alert-dismissible fade show col-6 offset-3 " role="alert">
+     <p><%= success %></p> 
+    <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="close"></button>
+ </div>
+
+<% } %>
+
+<% if ( error && error.length) { %>
+    <div class="alert alert-success alert-dismissible fade show col-6 offset-3 " role="alert">
+        <p><%= error %></p> 
+       <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="close"></button>
+    </div>
+<% } %>
+
+<% if ( signup && signup.length) { %>
+    <div class="alert alert-success alert-dismissible fade show col-6 offset-3 " role="alert"> <p><%= signup %></p> 
+        <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="close"></button> </div>  
+   
+<% } %>
+
+
+
