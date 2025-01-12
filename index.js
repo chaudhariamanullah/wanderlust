@@ -108,7 +108,7 @@ app.listen(8080, ()=>{
 })
 
 app.get("/",(req,res)=>{
-   res.redirect("../index.ejs")
+   res.redirect("../listing/index.ejs")
 })
 
 
