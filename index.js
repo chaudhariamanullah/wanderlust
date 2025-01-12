@@ -26,6 +26,7 @@ app.engine("ejs",ejsMate);
 app.use(express.static(path.join(__dirname,"/public")))
 app.use(express.json());
 
+const dbUrl = process.env.ATLASDB_URL;
 const store = MongoStore.create({
     mongoUrl: dbUrl, 
     crypto : {
@@ -91,9 +92,8 @@ app.use((err, req, res, next) => {
 
 
 // const Mongoose_URL = "mongodb://127.0.0.1:27017/wanderlust";
-const atlasDB_URL = process.env.ATLASDB_URL;
 async function main(){
-    await mongoose.connect(atlasDB_URL)
+    await mongoose.connect(dbUrl)
 }
 app.listen(8080, ()=>{
     console.log("Server Is On.")
