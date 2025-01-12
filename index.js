@@ -19,6 +19,18 @@ const localStrategy = require("passport-local")
 const User = require("./modules/user.js")
 const { Server } = require("http");
 
+const dbUrl = process.env.ATLASDB_URL;
+
+main().then( ()=>{
+    console.log("DB Is Connected.")
+}).catch( ()=>{
+    console.log("DB Connection Failed.")
+})
+
+async function main(){
+    await mongoose.connect(dbUrl)
+}
+
 app.set("view engine","ejs");
 app.set("views",path.join(__dirname,"views"));
 app.use(express.urlencoded({extended:true}));
@@ -27,7 +39,6 @@ app.engine("ejs",ejsMate);
 app.use(express.static(path.join(__dirname,"/public")))
 app.use(express.json());
 
-const dbUrl = process.env.ATLASDB_URL;
 const store = MongoStore.create({
     mongoUrl: dbUrl, 
     crypto : {
@@ -68,10 +79,10 @@ app.use((req, res, next) => {
 });
 
 //SignUp
-app.use((req,res,next)=>{
-    res.locals.signup = req.flash("signupSuccess")
-    next()
-})
+//app.use((req,res,next)=>{
+//    res.locals.signup = req.flash("signupSuccess")
+//   next()
+//})
 
 app.use("/listing",listingRouter);
 app.use("/listing/:id/reviews",reviewRouter)
@@ -91,9 +102,7 @@ app.use((err, req, res, next) => {
 
 
 // const Mongoose_URL = "mongodb://127.0.0.1:27017/wanderlust";
-async function main(){
-    await mongoose.connect(dbUrl)
-}
+
 app.listen(8080, ()=>{
     console.log("Server Is On.")
 })
@@ -102,8 +111,4 @@ app.listen(8080, ()=>{
 //    res.send("Page Is Working.")
 //})
 
-main().then( ()=>{
-    console.log("DB Is Connected.")
-}).catch( ()=>{
-    console.log("DB Connection Failed.")
-})
+
