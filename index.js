@@ -17,6 +17,7 @@ const flash = require("connect-flash")
 const passport = require("passport")
 const localStrategy = require("passport-local")
 const User = require("./modules/user.js")
+const { Server } = require("http");
 
 app.set("view engine","ejs");
 app.set("views",path.join(__dirname,"views"));
@@ -106,28 +107,3 @@ main().then( ()=>{
 }).catch( ()=>{
     console.log("DB Connection Failed.")
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
- 
-
-
-
-
-// const {reviewSchema} = require("./schemaValidation.js");
-// const Review = require("./modules/review.js");
-// const ExpressError = require("./utils/ExpressError.js");
-// const Listing = require("./modules/listing.js");
