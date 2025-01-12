@@ -107,8 +107,8 @@ app.listen(8080, ()=>{
     console.log("Server Is On.")
 })
 
-//app.get("/",(req,res)=>{
-//    res.send("Page Is Working.")
-//})
+app.get("/",(req,res)=>{
+   res.redirect("../index.ejs")
+})
 
 
