@@ -78,7 +78,7 @@ app.use((req, res, next) => {
     next();
 });
 
-SignUp
+// SignUp
 app.use((req,res,next)=>{
    res.locals.signup = req.flash("signupSuccess")
   next()
