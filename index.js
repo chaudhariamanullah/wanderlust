@@ -78,20 +78,20 @@ app.use((req, res, next) => {
     next();
 });
 
-//SignUp
-//app.use((req,res,next)=>{
-//    res.locals.signup = req.flash("signupSuccess")
-//   next()
-//})
+SignUp
+app.use((req,res,next)=>{
+   res.locals.signup = req.flash("signupSuccess")
+  next()
+})
 
 app.use("/listing",listingRouter);
 app.use("/listing/:id/reviews",reviewRouter)
 app.use("/",userRouter)
 
-// Wrong Route Error Handlig
-//app.all("*",(req,res,next)=>{
-//    next(new ExpressError(404,"Page Not Found!"));
-//})
+Wrong Route Error Handlig
+app.all("*",(req,res,next)=>{
+   next(new ExpressError(404,"Page Not Found!"));
+})
 
 // Error Handling
 app.use((err, req, res, next) => {
@@ -107,8 +107,8 @@ app.listen(8080, ()=>{
     console.log("Server Is On.")
 })
 
-// app.get("/",(req,res)=>{
-//    res.redirect("./listing/index.ejs")
-// })
+app.get("/",(req,res)=>{
+   res.redirect("./listing/index.ejs")
+})
 
 
