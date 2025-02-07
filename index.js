@@ -89,9 +89,9 @@ app.use("/listing/:id/reviews",reviewRouter)
 app.use("/",userRouter)
 
 // Wrong Route Error Handlig
-app.all("*",(req,res,next)=>{
-   next(new ExpressError(404,"Page Not Found!"));
-})
+// app.all("*",(req,res,next)=>{
+//    next(new ExpressError(404,"Page Not Found!"));
+// })
 
 // Error Handling
 app.use((err, req, res, next) => {
