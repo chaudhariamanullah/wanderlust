@@ -84,8 +84,9 @@
        
     </div>
 </div>
-var lat = <%- JSON.stringify{listing.coordinates?.latitude} || 51.505 %>;
-var lon = <%- JSON.stringify{listing.coordinates?.longitude} || -0.09 %>;
+var lat = <%- JSON.stringify(listing.coordinates?.latitude) || 51.505 %>;
+var lon = <%- JSON.stringify(listing.coordinates?.longitude) || -0.09 %>;
+
 <script>
     var map = L.map('map').setView([lat , lon], 13);
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
