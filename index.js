@@ -1,6 +1,7 @@
 if (process.env.NODE_ENV != "production"){
-    require('dotenv').config()
-};
+    require('dotenv').config();
+}
+
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
@@ -27,8 +28,13 @@ main().then( ()=>{
     console.log("DB Connection Failed.")
 })
 
+console.log("DB URL:", dbUrl);
 async function main(){
-    await mongoose.connect(dbUrl)
+    await mongoose.connect(dbUrl, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        tls: true
+    });
 }
 
 app.set("view engine","ejs");
